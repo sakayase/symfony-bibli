@@ -4,7 +4,7 @@ namespace App\Form;
 
 use App\Entity\Emprunt;
 use App\Entity\Livre;
-use App\Entity\User;
+use App\Entity\Emprunteur;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -18,9 +18,9 @@ class EmpruntType extends AbstractType
             ->add('dateRetour')
             ->add('dateEmprunt')
             ->add('emprunteur', EntityType::class, [
-                'class' => User::class,
-                'choice_label' => function($user) {
-                    return "{$user->getName()} ({$user->getId()})";
+                'class' => Emprunteur::class,
+                'choice_label' => function($emprunteur) {
+                    return "{$emprunteur->getNom()} ({$emprunteur->getId()})";
                 }])
             ->add('livre', EntityType::class, [
                 'class' => Livre::class,
