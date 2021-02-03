@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Emprunt;
-use App\Form\Emprunt1Type;
+use App\Form\EmpruntType;
 use App\Repository\EmpruntRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -31,7 +31,7 @@ class EmpruntController extends AbstractController
     public function new(Request $request): Response
     {
         $emprunt = new Emprunt();
-        $form = $this->createForm(Emprunt1Type::class, $emprunt);
+        $form = $this->createForm(EmpruntType::class, $emprunt);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -63,7 +63,7 @@ class EmpruntController extends AbstractController
      */
     public function edit(Request $request, Emprunt $emprunt): Response
     {
-        $form = $this->createForm(Emprunt1Type::class, $emprunt);
+        $form = $this->createForm(EmpruntType::class, $emprunt);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

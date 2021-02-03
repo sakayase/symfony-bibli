@@ -70,7 +70,7 @@ class Livre
     private $etat;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Emprunt::class, mappedBy="livre")
+     * @ORM\OneToMany(targetEntity=Emprunt::class, mappedBy="livre")
      */
     private $emprunts;
 

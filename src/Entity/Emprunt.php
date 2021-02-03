@@ -30,20 +30,14 @@ class Emprunt
     private $dateEmprunt;
 
     /**
-     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="emprunts")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\ManyToOne(targetEntity=Emprunteur::class, inversedBy="emprunt")
      */
     private $emprunteur;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Livre::class, inversedBy="emprunts")
+     * @ORM\ManyToOne(targetEntity=Livre::class, inversedBy="emprunts")
      */
     private $livre;
-
-    public function __construct()
-    {
-        $this->livre = new ArrayCollection();
-    }
 
     public function getId(): ?int
     {
@@ -74,38 +68,26 @@ class Emprunt
         return $this;
     }
 
-    public function getEmprunteur(): ?User
+    public function getEmprunteur(): ?Emprunteur
     {
         return $this->emprunteur;
     }
 
-    public function setEmprunteur(?User $emprunteur): self
+    public function setEmprunteur(?Emprunteur $emprunteur): self
     {
         $this->emprunteur = $emprunteur;
 
         return $this;
     }
 
-    /**
-     * @return Collection|Livre[]
-     */
-    public function getLivre(): Collection
+    public function getLivre(): ?Livre
     {
         return $this->livre;
     }
 
-    public function addLivre(Livre $livre): self
+    public function setLivre(?Livre $livre): self
     {
-        if (!$this->livre->contains($livre)) {
-            $this->livre[] = $livre;
-        }
-
-        return $this;
-    }
-
-    public function removeLivre(Livre $livre): self
-    {
-        $this->livre->removeElement($livre);
+        $this->livre = $livre;
 
         return $this;
     }

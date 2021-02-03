@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Livre;
-use App\Form\Livre1Type;
+use App\Form\LivreType;
 use App\Repository\LivreRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -31,7 +31,7 @@ class LivreController extends AbstractController
     public function new(Request $request): Response
     {
         $livre = new Livre();
-        $form = $this->createForm(Livre1Type::class, $livre);
+        $form = $this->createForm(LivreType::class, $livre);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -63,7 +63,7 @@ class LivreController extends AbstractController
      */
     public function edit(Request $request, Livre $livre): Response
     {
-        $form = $this->createForm(Livre1Type::class, $livre);
+        $form = $this->createForm(LivreType::class, $livre);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

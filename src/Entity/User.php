@@ -61,16 +61,6 @@ class User implements UserInterface
      */
     private $carte;
 
-    /**
-     * @ORM\OneToMany(targetEntity=Emprunt::class, mappedBy="emprunteur")
-     */
-    private $emprunts;
-
-    public function __construct()
-    {
-        $this->emprunts = new ArrayCollection();
-    }
-
     public function getId(): ?int
     {
         return $this->id;
@@ -205,36 +195,6 @@ class User implements UserInterface
     public function setCarte(bool $carte): self
     {
         $this->carte = $carte;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|Emprunt[]
-     */
-    public function getEmprunts(): Collection
-    {
-        return $this->emprunts;
-    }
-
-    public function addEmprunt(Emprunt $emprunt): self
-    {
-        if (!$this->emprunts->contains($emprunt)) {
-            $this->emprunts[] = $emprunt;
-            $emprunt->setEmprunteur($this);
-        }
-
-        return $this;
-    }
-
-    public function removeEmprunt(Emprunt $emprunt): self
-    {
-        if ($this->emprunts->removeElement($emprunt)) {
-            // set the owning side to null (unless already changed)
-            if ($emprunt->getEmprunteur() === $this) {
-                $emprunt->setEmprunteur(null);
-            }
-        }
 
         return $this;
     }
